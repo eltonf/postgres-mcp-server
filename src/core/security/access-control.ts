@@ -18,6 +18,7 @@ import {
 import { getTableConfigForSchema } from "./config-loader.js";
 import { parseQuery } from "../sql-parser.js";
 import { logger } from "../logger.js";
+import { resolveSchema } from "../config.js";
 
 /**
  * Validate a query against access control configuration
@@ -37,7 +38,7 @@ export function validateQueryAccess(
   }
 
   // Step 2: Parse the query
-  const parsed = parseQuery(query, database);
+  const parsed = parseQuery(query, database, resolveSchema());
   logger.debug(
     `Parsed query info: tables=${parsed.tables.length}, columns=${parsed.columns.length}, hasSelectStar=${parsed.hasSelectStar}`,
   );

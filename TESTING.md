@@ -14,17 +14,17 @@ Start a local PostgreSQL instance:
 
 ```bash
 docker run --name postgres-mcp-test \
-  -e POSTGRES_PASSWORD=postgres_password \
+  -e POSTGRES_PASSWORD=admin_password \
   -e POSTGRES_DB=app_db \
   -p 5432:5432 \
   -d postgres:16
 ```
 
-Create sample role and tables:
+Create sample role and tables. `admin_password` is only for the built-in `postgres` admin user; `app_user_password` is the password used by the MCP server:
 
 ```bash
 docker exec -i postgres-mcp-test psql -U postgres -d app_db <<'SQL'
-CREATE ROLE app_user LOGIN PASSWORD 'change_me';
+CREATE ROLE app_user LOGIN PASSWORD 'app_user_password';
 GRANT CONNECT ON DATABASE app_db TO app_user;
 GRANT USAGE ON SCHEMA public TO app_user;
 
@@ -59,7 +59,7 @@ SQL
 Configure `.env`:
 
 ```dotenv
-DATABASE_URL=postgresql://app_user:change_me@localhost:5432/app_db
+DATABASE_URL=postgresql://app_user:app_user_password@localhost:5432/app_db
 DB_SCHEMA=public
 SCHEMA_ONLY_MODE=true
 ```

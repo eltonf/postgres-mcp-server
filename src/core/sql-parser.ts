@@ -23,7 +23,7 @@ const PARSER_OPTIONS = { database: "Postgresql" };
 /**
  * Parse a SQL query and extract tables, columns, and SELECT * usage
  */
-export function parseQuery(sql: string, database: string): ParsedQueryInfo {
+export function parseQuery(sql: string, database: string, defaultSchema = database): ParsedQueryInfo {
   const result: ParsedQueryInfo = {
     tables: [],
     columns: [],
@@ -41,13 +41,13 @@ export function parseQuery(sql: string, database: string): ParsedQueryInfo {
 
     for (const stmt of statements) {
       if (stmt && stmt.type === "select") {
-        processSelectStatement(stmt, database, database, result);
+        processSelectStatement(stmt, database, defaultSchema, result);
       }
     }
   } catch (error: any) {
     logger.warn(`SQL parsing failed, falling back to regex: ${error.message}`);
     // Fallback to regex-based parsing for queries the parser can't handle
-    return parseQueryWithRegex(sql, database);
+    return parseQueryWithRegex(sql, database, defaultSchema);
   }
 
   return result;
@@ -440,7 +440,7 @@ function processExpression(
 /**
  * Fallback regex-based parsing for queries the AST parser can't handle
  */
-function parseQueryWithRegex(sql: string, database: string): ParsedQueryInfo {
+function parseQueryWithRegex(sql: string, database: string, defaultSchema: string): ParsedQueryInfo {
   const result: ParsedQueryInfo = {
     tables: [],
     columns: [],
@@ -483,7 +483,7 @@ function parseQueryWithRegex(sql: string, database: string): ParsedQueryInfo {
     // Handle schema.table format
     const tableParts = tableName.split(".");
     const table = tableParts.length > 1 ? tableParts[1] : tableParts[0];
-    const schema = tableParts.length > 1 ? tableParts[0] : database;
+    const schema = tableParts.length > 1 ? tableParts[0] : defaultSchema;
 
     // Skip if this is a CTE name
     if (cteNames.has(table.toLowerCase())) {

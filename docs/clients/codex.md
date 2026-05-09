@@ -4,7 +4,7 @@ Add the server as a local stdio MCP:
 
 ```bash
 codex mcp add postgres \
-  --env DATABASE_URL=postgresql://app_user:password@localhost:5432/app_db \
+  --env DATABASE_URL=postgresql://app_user:app_user_password@localhost:5432/app_db \
   -- npx -y postgres-mcp-server
 ```
 

@@ -35,3 +35,12 @@ test('parseQuery handles CTE source tables but skips CTE references', () => {
   assert(parsed.tables.some((table) => table.table === 'customers'));
   assert(!parsed.tables.some((table) => table.table === 'recent_orders'));
 });
+
+test('parseQuery uses provided default schema for unqualified tables', () => {
+  const parsed = parseQuery('SELECT id, email FROM customers', 'app_db', 'public');
+  assert.equal(parsed.tables[0].schema, 'public');
+  assert.deepEqual(
+    parsed.columns.map((column) => `${column.schema}.${column.table}.${column.column}`),
+    ['public.customers.id', 'public.customers.email'],
+  );
+});

@@ -47,7 +47,7 @@ SELECT id, email, created_at FROM customers ORDER BY id LIMIT 20;
       "command": "npx",
       "args": ["-y", "postgres-mcp-server"],
       "env": {
-        "DATABASE_URL": "postgresql://app_user:change_me@localhost:5432/app_db",
+        "DATABASE_URL": "postgresql://app_user:app_user_password@localhost:5432/app_db",
         "DB_SCHEMA": "public",
         "SCHEMA_ONLY_MODE": "false",
         "QUERY_ACCESS_CONFIG": "/absolute/path/to/query-access.json"

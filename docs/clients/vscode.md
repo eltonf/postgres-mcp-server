@@ -10,7 +10,7 @@ Create `.vscode/mcp.json` in your project:
       "command": "npx",
       "args": ["-y", "postgres-mcp-server"],
       "env": {
-        "DATABASE_URL": "postgresql://app_user:password@localhost:5432/app_db",
+        "DATABASE_URL": "postgresql://app_user:app_user_password@localhost:5432/app_db",
         "SCHEMA_ONLY_MODE": "true"
       }
     }

@@ -45,7 +45,7 @@ npm start
 Configure `.env`:
 
 ```dotenv
-DATABASE_URL=postgresql://app_user:change_me@localhost:5432/app_db
+DATABASE_URL=postgresql://app_user:app_user_password@localhost:5432/app_db
 DB_SCHEMA=public
 SCHEMA_ONLY_MODE=true
 ```
@@ -57,7 +57,7 @@ This server connects to one configured database per process. Tool inputs may inc
 ## Least-Privilege PostgreSQL User
 
 ```sql
-CREATE ROLE app_user LOGIN PASSWORD 'change_me';
+CREATE ROLE app_user LOGIN PASSWORD 'app_user_password';
 GRANT CONNECT ON DATABASE app_db TO app_user;
 GRANT USAGE ON SCHEMA public TO app_user;
 GRANT SELECT ON ALL TABLES IN SCHEMA public TO app_user;
@@ -84,7 +84,7 @@ Client-specific docs:
       "command": "npx",
       "args": ["-y", "postgres-mcp-server"],
       "env": {
-        "DATABASE_URL": "postgresql://app_user:change_me@localhost:5432/app_db",
+        "DATABASE_URL": "postgresql://app_user:app_user_password@localhost:5432/app_db",
         "DB_SCHEMA": "public",
         "SCHEMA_ONLY_MODE": "true"
       }

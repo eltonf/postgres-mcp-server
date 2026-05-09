@@ -4,7 +4,7 @@ import * as fs from 'node:fs';
 import * as path from 'node:path';
 import { maskDatabaseUrl } from './core/database-url.js';
 
-const DEFAULT_DATABASE_URL = 'postgresql://app_user:change_me@localhost:5432/app_db';
+const DEFAULT_DATABASE_URL = 'postgresql://app_user:app_user_password@localhost:5432/app_db';
 
 function usage(): void {
   console.log(`postgres-mcp-server
@@ -190,7 +190,7 @@ WHERE table_schema = $1
     console.log('\nDoctor passed.');
   } catch (error) {
     console.error('Doctor failed.');
-    console.error(error instanceof Error ? error.message : String(error));
+    console.error(error instanceof Error ? error.message || error.stack || String(error) : JSON.stringify(error));
     process.exitCode = 1;
   }
 }
