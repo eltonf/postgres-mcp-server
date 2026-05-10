@@ -45,7 +45,7 @@ SELECT id, email, created_at FROM customers ORDER BY id LIMIT 20;
   "mcpServers": {
     "postgres": {
       "command": "npx",
-      "args": ["-y", "postgres-mcp-server"],
+      "args": ["-y", "/postgres-mcp-server"],
       "env": {
         "DATABASE_URL": "postgresql://app_user:app_user_password@localhost:5432/app_db",
         "DB_SCHEMA": "public",

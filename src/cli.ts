@@ -80,7 +80,7 @@ Replace the sample DATABASE_URL with your real PostgreSQL connection string.
 claude mcp add --transport stdio postgres \\
   --env DATABASE_URL=${DEFAULT_DATABASE_URL} \\
   --env DB_SCHEMA=public \\
-  -- npx -y postgres-mcp-server
+  -- npx -y /postgres-mcp-server
 \`\`\`
 
 ## Codex
@@ -89,7 +89,7 @@ claude mcp add --transport stdio postgres \\
 codex mcp add postgres \\
   --env DATABASE_URL=${DEFAULT_DATABASE_URL} \\
   --env DB_SCHEMA=public \\
-  -- npx -y postgres-mcp-server
+  -- npx -y /postgres-mcp-server
 \`\`\`
 
 ## Claude Desktop
@@ -99,7 +99,7 @@ codex mcp add postgres \\
   "mcpServers": {
     "postgres": {
       "command": "npx",
-      "args": ["-y", "postgres-mcp-server"],
+      "args": ["-y", "/postgres-mcp-server"],
       "env": {
         "DATABASE_URL": "${DEFAULT_DATABASE_URL}",
         "DB_SCHEMA": "public"
@@ -117,7 +117,7 @@ codex mcp add postgres \\
   "mcp": {
     "postgres": {
       "type": "local",
-      "command": ["npx", "-y", "postgres-mcp-server"],
+      "command": ["npx", "-y", "/postgres-mcp-server"],
       "enabled": true,
       "environment": {
         "DATABASE_URL": "${DEFAULT_DATABASE_URL}",

@@ -8,7 +8,7 @@ Add a local MCP server to `opencode.json`:
   "mcp": {
     "postgres": {
       "type": "local",
-      "command": ["npx", "-y", "postgres-mcp-server"],
+      "command": ["npx", "-y", "/postgres-mcp-server"],
       "enabled": true,
       "environment": {
         "DATABASE_URL": "postgresql://app_user:app_user_password@localhost:5432/app_db",

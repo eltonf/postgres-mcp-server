@@ -1,5 +1,5 @@
 {
-  "name": "postgres-mcp-server",
+  "name": "@eltonf/postgres-mcp-server",
   "version": "1.0.0",
   "description": "MCP server for PostgreSQL schema introspection and guarded read-only queries",
   "main": "dist/index.js",
@@ -45,5 +45,8 @@
   },
   "engines": {
     "node": ">=18.0.0"
+  },
+  "publishConfig": {
+    "access": "public"
   }
 }

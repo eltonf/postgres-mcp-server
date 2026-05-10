@@ -24,13 +24,13 @@ Works with standard PostgreSQL providers, including Supabase-hosted Postgres.
 Fast path for users installing from npm:
 
 ```bash
-npx -y postgres-mcp-server init
+npx -y /postgres-mcp-server init
 ```
 
 Then edit `.env` and check the connection:
 
 ```bash
-npx -y postgres-mcp-server doctor
+npx -y /postgres-mcp-server doctor
 ```
 
 Local development from this repository:
@@ -82,7 +82,7 @@ Client-specific docs:
   "mcpServers": {
     "postgres": {
       "command": "npx",
-      "args": ["-y", "postgres-mcp-server"],
+      "args": ["-y", "/postgres-mcp-server"],
       "env": {
         "DATABASE_URL": "postgresql://app_user:app_user_password@localhost:5432/app_db",
         "DB_SCHEMA": "public",

@@ -5,7 +5,7 @@ Add the server as a local stdio MCP:
 ```bash
 claude mcp add --transport stdio postgres \
   --env DATABASE_URL=postgresql://app_user:app_user_password@localhost:5432/app_db \
-  -- npx -y postgres-mcp-server
+  -- npx -y /postgres-mcp-server
 ```
 
 For read-query support, also pass:
